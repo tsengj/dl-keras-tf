@@ -7,6 +7,7 @@
 docs/data/
 docs/notebooks/ames
 materials/03-case-studies/mnist
+materials/03-recipe/ames
 materials/99-extras/dog_activations
 materials/99-extras/dog_heatmap.png
 materials/99-extras/dog_overlay.png
