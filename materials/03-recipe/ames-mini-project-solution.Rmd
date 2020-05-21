@@ -264,7 +264,7 @@ optimizers show a slow progression down the loss curve so we can afford to use
 a larger learning rate. I found that the RMSprop tended to provide the best
 results at this point.
 
-```{r]}
+```{r}
 model <- keras_model_sequential() %>% 
   layer_dense(units = 128, activation = "relu", input_shape = ncol(x_train)) %>%
   layer_dense(units = 1)
@@ -305,7 +305,7 @@ also improves. I plot the learning rates by epoch below and we can see that
 they reduce multiple times which allows our model to eek out a little more
 performance improvements.
 
-```{r]}
+```{r}
 model <- keras_model_sequential() %>% 
   layer_dense(units = 128, activation = "relu", input_shape = ncol(x_train)) %>%
   layer_dense(units = 1)

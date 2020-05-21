@@ -293,16 +293,14 @@ get_weights(model)
 ```{r}
 # 1. Define model architecture
 model <- keras_model_sequential() %>%
-  layer_dense(units = ___, input_shape = ____)
+  layer_dense(units = 1, input_shape = ncol(x))
 
 # 2. Define how our model is going to learn
-model %>% compile(
-  optimizer = "sgd",
-  loss = ____
-)
+model %>% compile(optimizer = "sgd",
+  loss = "mse")
 
 # 3. Train our model
-history <- model %>% fit(x, y, epochs = ____)
+history <- model %>% fit(x, y, epochs = 25)
 ```
 
 ## Gradient descent
@@ -315,8 +313,8 @@ do often but, rather, helps make the gradient descent process more concrete.
 # data frame to dump our results
 model_est <- expand_grid(
   epoch = 1:25,
-  a_sgd = NA,
-  b_sgd = NA
+  a_sgd = 1,
+  b_sgd = 1
 )
 
 # 1. Define model architecture
@@ -332,7 +330,7 @@ model %>% compile(
 # 3. Train our model for 25 epochs and record the weights after each epoch
 for (row in seq_len(nrow(model_est))) {
   
-  history <- model %>% fit(x, y, epoch = 1, verbose = FALSE)
+  history <- model %>% fit(x, y, epoch = 25, verbose = FALSE)
   
   current_wts <- get_weights(model)
 
@@ -700,7 +698,7 @@ df %>%
 
 ```{r}
 model <- keras_model_sequential() %>%
-  layer_dense(units = ____, input_shape = ____, activation = ____) %>%
+  layer_dense(units = 21, input_shape = ncol(x), activation = "relu") %>%
   layer_dense(units = 1)
 
 model %>% compile(
@@ -911,7 +909,7 @@ model %>% compile(
 
 history <- model %>% fit(
   x, y, 
-  batch_size = ____, 
+  batch_size = 32, 
   epochs = 20, 
   validation_split = 0.2
   )
@@ -1003,12 +1001,12 @@ Then start adjusting the following:
 ```{r}
 # define architecture
 model <- keras_model_sequential() %>%
-  layer_dense(units = ____, input_shape = ____, activation = ____) %>%
-  layer_dense(units = ____, activation = ____)
+  layer_dense(units = 16, input_shape = ncol(x), activation = "relu") %>%
+  layer_dense(units = n_classes, activation = "softmax")
 
 # define learning procedure
 model %>% compile(
-  optimizer = optimizer_sgd(lr = ____),
+  optimizer = optimizer_sgd(lr = 0.01),
   loss = "categorical_crossentropy",
   metrics = "accuracy"
 )
@@ -1016,9 +1014,9 @@ model %>% compile(
 # train model
 history <- model %>% fit(
   x, y, 
-  batch_size = ____, 
-  epochs = ____, 
-  validation_split = ____
+  batch_size = 32, 
+  epochs = 20, 
+  validation_split = 0.2
   )
 ```
 

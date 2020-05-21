@@ -31,6 +31,7 @@ library(fs)
 library(tidyverse)
 library(glue)
 library(progress)
+library(RQuantLib)
 
 # helper functions we'll use to explore word embeddings
 source("helper_functions.R")
@@ -67,6 +68,7 @@ review and
 3. and saves the output as a data frame with each review on an individual row.
 
 ```{r}
+# install.packages('RQuantLib')
 training_files <- file.path(imdb_dir, "train") %>%
   dir_ls(type = "directory") %>%
   map(dir_ls) %>%
@@ -100,8 +102,8 @@ pb <- progress_bar$new(total = obs, width = 60)
 for (file in seq_len(obs)) {
   pb$tick()
   
-  label <- training_files[[file, "label"]]
-  path <- training_files[[file, "path"]]
+  label <- training_files[file, "label"]
+  path <- training_files[file, "path"]
   
   labels[file] <- ifelse(label == "neg", 0, 1)
   texts[file] <- readChar(path, nchars = file.size(path)) 
