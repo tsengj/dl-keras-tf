@@ -20,9 +20,7 @@ get_embeddings <- function(text) {
   # Fit the model
   message("Computing embeddings based on GloVe algorithm...")
   glove <- text2vec::GlobalVectors$new(
-    word_vectors_size = 50, 
-    vocabulary = vocab, 
-    x_max = 10
+    rank = 50, x_max = 20
     )
   wv_main <- glove$fit_transform(tcm, n_iter = 20, convergence_tol = 0.01)
   wv_context = glove$components

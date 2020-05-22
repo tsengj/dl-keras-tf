@@ -284,7 +284,7 @@ Check out different reviews and see how we have transformed the data. Remove
 
 ```{r, eval=FALSE}
 # use review number (i.e. 2, 10, 150)
-which_review <- ____
+which_review <- 2
   
 cat(crayon::blue("Original text:\n"))
 texts[[which_review ]]
