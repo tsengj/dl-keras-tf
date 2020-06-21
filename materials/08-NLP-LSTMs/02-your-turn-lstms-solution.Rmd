@@ -100,8 +100,8 @@ labels <- vector(mode = "integer", length = obs)
 texts <- vector(mode = "character", length = obs)
 
 for (file in seq_len(obs)) {
-  label <- training_files[[file, "label"]]
-  path <- training_files[[file, "path"]]
+  label <- training_files[file, "label"]
+  path <- training_files[file, "path"]
   
   labels[file] <- ifelse(label == "neg", 0, 1)
   texts[file] <- readChar(path, nchars = file.size(path)) 
