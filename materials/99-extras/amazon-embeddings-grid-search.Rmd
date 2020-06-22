@@ -19,6 +19,14 @@ If you are unfamiliar with Keras/Tensorflow grid searches please review this
 ```{r, message=FALSE, warning=FALSE}
 library(tfruns)
 library(dplyr)
+
+# https://github.com/rstudio/keras/issues/338
+# https://github.com/rstudio/tensorflow/issues/347
+library(keras)
+library(tensorflow)
+gpu <- tf$config$experimental$get_visible_devices('GPU')[[1]]
+tf$config$experimental$set_memory_growth(device = gpu, enable = TRUE)
+
 ```
 
 Our grid search setup is located in this [amazon-embeddings-grid-search.R](https://rstudio-conf-2020.github.io/dl-keras-tf/materials/99-extras/amazon-embeddings-grid-search.R)
