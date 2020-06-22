@@ -82,3 +82,14 @@ model %>% fit(
   targets,
   epochs=epochs,
   batch_size=bch_size, validation_split=0.2)
+
+## Predictions
+
+c(x_train2,x_segment2, y_train2) %<-%
+  dt_data('test.csv',2000)
+train2 = do.call(cbind,x_train2) %>% t()
+segments2 = do.call(cbind,x_segment2) %>% t()
+
+concat2 = c(list(train2 ),list(segments2))
+
+res = model %>% predict(concat2)
