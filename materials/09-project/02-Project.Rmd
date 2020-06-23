@@ -256,7 +256,7 @@ couple of adjustments. In essence, we want to build a model that:
 3. adds a dense classifier to predict if the questions are duplicates.
 
 ```{r, echo=FALSE}
-knitr::include_graphics("p2-model1-structure.png")
+knitr::include_graphics("./images/p2-model1-structure.png")
 ```
 
 First, create the keras model components by filling in the blanks.
@@ -386,7 +386,7 @@ use LSTMs to embed our sequences. We do this by adding an LSTM layer after the
 embedding layer as represented here:
 
 ```{r, echo=FALSE}
-knitr::include_graphics("p2-model2-structure.png")
+knitr::include_graphics("./images/p2-model2-structure.png")
 ```
 
 The idea behind this is that the LSTM sequence embeddings may allow us to improve
