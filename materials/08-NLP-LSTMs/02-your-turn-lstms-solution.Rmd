@@ -216,7 +216,7 @@ and contains 2000 observations (rows) and `max_len` columns.
 ```{r}
 dim(features)
 
-expect_equal(class(features), "matrix")
+expect_equal(class(features)[1], "matrix")
 expect_equal(dim(features), c(obs, max_len))
 ```
 

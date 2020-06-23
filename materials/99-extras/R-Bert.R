@@ -86,7 +86,7 @@ model %>% fit(
 ## Predictions
 
 c(x_train2,x_segment2, y_train2) %<-%
-  dt_data('test.csv',2000)
+  dt_data('./materials/data/jigsaw-unintended-bias-in-toxicity-classification/test.csv',2000)
 train2 = do.call(cbind,x_train2) %>% t()
 segments2 = do.call(cbind,x_segment2) %>% t()
 
