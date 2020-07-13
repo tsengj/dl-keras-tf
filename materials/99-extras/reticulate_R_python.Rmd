@@ -1,0 +1,51 @@
+
+---
+title: "Multilingual R Markdown"
+author: "Carl Howe, RStudio"
+date: "7/6/2020"
+output: html_document
+---
+```{r setup, include=FALSE, echo = TRUE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+library(tidyverse)
+library(rlang)
+library(reticulate)
+library(RSQLite)
+library(DBI)
+library(gapminder)
+# py_install("pandas")
+# py_install("numpy")
+# py_install("matplotlib")
+```
+
+```{r gm_db_setup}
+gapminder_sqllite_db <- dbConnect(RSQLite::SQLite(), ":memory:")
+dbWriteTable(conn = gapminder_sqllite_db,"gapminder", gapminder)
+country <- "Switzerland"
+```
+
+## use R variable `country` in SQL query
+```{sql connection = gapminder_sqllite_db, output.var="gmdata"}
+SELECT * FROM gapminder WHERE country = ?country
+```
+
+## Access results of SQL query in R
+```{r}
+head(gmdata, 5)
+```
+```{python}
+print(r.gmdata.describe())
+```
+## Plot in Python and save result as .png
+```{python}
+import matplotlib.pyplot as plt
+plt.plot(r.gmdata.year, r.gmdata.lifeExp)
+plt.grid(True)
+plt.title("Switzerland Life Expectancy (years)")
+plt.savefig("./SwitzerlandLifeExp.png")
+```
+
+## Show size of Python plot using BASH
+```{bash}
+ls -l SwitzerlandLifeExp.png
+## -rw-r--r--  1 chowe  staff  26185 Jul  7 17:26 SwitzerlandLifeExp.png

@@ -396,28 +396,28 @@ may want to test:
   improve performance?
 
 ```{r, eval=FALSE}
-yourturn_model <- keras_model_sequential() %>%
-  layer_embedding(
-    input_dim = _____,  
-    input_length = _____,   
-    output_dim = _____           
-    ) %>%  
-  layer_flatten() %>% 
-  layer_dense(units = ____, activation = ____) %>%
-  layer_dense(units = 1, activation = "sigmoid")
-
-yourturn_model %>% compile(
-  optimizer = _____,
-  loss = "binary_crossentropy",
-  metrics = "accuracy"
-)
-
-yourturn_results <- yourturn_model %>% fit(
-  x_train, y_train,
-  epochs = 10,
-  batch_size = 32,
-  validation_split = 0.2
-)
+# yourturn_model <- keras_model_sequential() %>%
+#   layer_embedding(
+#     input_dim = _____,  
+#     input_length = _____,   
+#     output_dim = _____           
+#     ) %>%  
+#   layer_flatten() %>% 
+#   layer_dense(units = ____, activation = ____) %>%
+#   layer_dense(units = 1, activation = "sigmoid")
+# 
+# yourturn_model %>% compile(
+#   optimizer = _____,
+#   loss = "binary_crossentropy",
+#   metrics = "accuracy"
+# )
+# 
+# yourturn_results <- yourturn_model %>% fit(
+#   x_train, y_train,
+#   epochs = 10,
+#   batch_size = 32,
+#   validation_split = 0.2
+# )
 ```
 
 # Comparing embeddings
